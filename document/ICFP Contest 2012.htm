@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>
+  ICFP Contest 2012
+</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="Content-Language" content="en" />
+  <meta name="author" content="Jochen Hoenicke" />
+  <meta name="keywords" content="ICFP contest 2012" />
+  <meta name="description" content="Experiences from the ICFP-contest 2012" />
+  <link href="../css/print.css" rel="stylesheet" type="text/css" media="print" />
+  <link href="../css/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
+  <!--[if lte IE 6]><link rel="stylesheet" href="../css/ielte6.css"
+  type="text/css" media="screen" /><![endif]-->
+   <script language="javascript" type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+ <script language="javascript" type="text/javascript" src="levels.js"></script>
+ <script language="javascript" type="text/javascript" src="lambdadash.js"></script>
+ <style type="text/css">
+   .barouter {
+       display: inline-block;
+       border-width: 1px;
+       border-style: solid;
+       width: 100px;
+       border-color: #ff0;
+       padding: 1px;
+   }
+   .barinner {
+       display: inline-block;
+       width: 100%;
+       height: 14px
+   }
+   #growth { background-color: #ccc }
+   #score {
+       text-align: right;
+       display: inline-block;
+       width:3em;
+   }
+   .mine {
+       margin: 1em;
+       padding: 1em;
+       background: #222;
+       color: #ff0;
+   }
+    #minecanvas {
+        display: inline-block;
+    }
+    #control {
+        float: right;
+        display: inline-block;
+        text-align: center
+    }
+    input.button {
+        background: #222;
+        color: #ff0;
+        border-style: solid;
+        border-color: #fff;
+        margin: 2px
+    }
+    input.button:hover {
+        background: #444;
+    }
+    input.button:active {
+        background: #fff;
+        color: #000
+    }
+    #moves {
+    	word-wrap:break-word;
+    }
+ </style>
+ <meta name="Generator" content="htp 1.17" />
+</head>
+ <body >
+ <div id="container">
+  <a class="skip" href="#main">Skip navigation</a>
+  <div id="logo">
+   <a href="../">www.<span>Jochen-Hoenicke</span>.de</a>
+   <div id="sublogo">the page formerly known as
+     <a href="../hoenicke.ath.cx/">hoenicke.ath.cx</a>
+   </div>
+  </div>
+  <ul id="subnav">
+           <li><a href="../">home</a></li>
+           <li><a href="../publications.html">publications</a></li>
+           <li><a href="../teaching.html">teaching</a></li>
+              <li><a href="../programs.html">programs</a>
+                <ul>
+           <li><a href="../rcx/">rcx</a></li>
+           <li><a href="../scripts.html">scripts</a></li>
+           <li><a href="../trakker.html">trakker</a></li>
+           <li><a href="../quickcam/">quickcam</a></li>
+           <li><a href="../seahaven/">seahaven</a></li>
+           <li><a href="../scummvm/">scummvm</a></li>
+              <li><a href="../icfp12/">icfp-contest</a>
+                <ul>
+           <li><a href="../icfp07/">2007</a></li>
+           <li><a href="../icfp08/">2008</a></li>
+           <li><a href="../icfp10/">2010</a></li>
+           <li><a href="../icfp11/">2011</a></li>
+              <li><div>2012</div>
+       </li>
+</ul>
+       </li>
+           <li><a href="../js-otp/">js-otp</a></li>
+</ul>
+       </li>
+   <li>
+   </li>
+  </ul>
+  <div id="main">
+     <h1><a name="up"></a>ICFP Contest 2012</h1>
+            <img src="../img/nogo.gif" alt=" " class="secnav" width="15" height="15" />
+<a href="#up" class="noprint"><img src="../img/gotop.gif"
+alt="top of page" class="secnav" title="top of page" width="15" height="15" /></a>
+  <h2><a name="sec-1"></a>Lambda Lifting</h2>
+<p>The task of the <a href="http://icfpcontest2012.wordpress.com/">ICFP
+contest 2012</a> was writing a planner for a mining roboter to dig lambdas
+from the mines near St. Andrews.</p>
+<p>For your entertainment you can play with my
+<em>Javascript Lambda Lifting Simulator</em>.  Use
+the keyboard to play it.</p>
+ <form action="#" onsubmit="return false;">
+   Level: <select id="levels">
+     <option value="x">Please enable Javascript</option>
+   </select>
+   or
+   <input type="file" id="upload" name="file" />
+ </form>
+ <div id="game" class="mine" tabindex="0">
+     <div id="control">
+         <input type="button" class="button" onclick="undo()" value="Undo(Z)" />
+<br/>
+         <input type="button" class="button" onclick="move('U')" value="U" />
+<br/>
+         <input type="button" class="button" onclick="move('L')" value="L" />
+  <input type="button" class="button" onclick="move('R')" value="R" />
+<br/>
+         <input type="button" class="button" onclick="move('D')" value="D" />
+<br/>
+         <input type="button" class="button" onclick="move('W')" value="W" />
+  <input type="button" class="button" onclick="move('S')" value="S" />
+     </div>
+     Score: <span id="score"></span>&nbsp;&nbsp;
+     <span id="air">Air:
+     <span class="barouter"><span id="submerged" class="barinner"></span></span>
+     &nbsp;&nbsp;</span>
+     <span id="beard">Beard:
+     <span class="barouter"><span id="growth" class="barinner"></span></span>
+     &nbsp;&nbsp;</span>
+     <canvas id="razors" height="16" width="16"></canvas>
+   <p>
+     <canvas id="minecanvas">
+     </canvas>
+     <span id="status"></span>
+   </p>
+   <p>Moves: <span id="moves"></span></p>
+ </div>
+ <form id="validate" action="http://www.undecidable.org.uk/~edwin/cgi-bin/weblifter.cgi" method="POST" target="_blank">
+    <input id="vallevel" type="hidden" name="mapfile" value="contest1" />
+    <input id="valmoves" type="hidden" name="route" value="" />
+    <input id="valsubmit" type="submit" value="Validate">
+ </form>
+  </div>
+  <div id="footer">
+    <p>&copy;
+	
+	
+	
+	
+  2012
+ Jochen Hoenicke, last updated:   Wed Jul 25, 2012
+</p>
+  </div>
+ </div>
+ </body>
+</html>

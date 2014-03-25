@@ -1,0 +1,33 @@
+Mapname score steps result othername
+contest1 212 13 W lightning1
+contest2 142 8 A
+contest3 273 27 W lightning2
+contest4 577 23 W
+contest5 1285 65 W
+contest6 740 60 A lightning3
+contest7 869 31 W
+contest8 1287 113 A
+contest9 3095 130 W
+contest10 3610 215 W
+lightning4 835 115 A
+lightning5 1159 91 A
+lightning6 1478 72 A
+lightning7 2713 137 W
+lightning8 4818 207 W
+lightning9 2485 140 W
+lightning10 3375 275 A
+
+Lightning total 18088
+
+Team        Map 1 Map 2 Map 3 Map 4 Map 5 Map 6 Map 7 Map 8 Map 9 Map 10 TOTAL
+1 irori     212   275   1177  653   1166  2723  1331  4824  2506  5520   20387
+2 HITORI    210   271   1051  951   1146  2647  1335  4722  2361  5387   20081
+3 Perpetuum 212   275   741   657   1174  2709  1468  4782  2504  5509   20031
+4 oyososan  212   275   1177  1020  1174  2664  2736  4844  2408  3303   19813
+5 Tiger     212   273   740   835   1159  1478  2713  4818  2485  3375   18088
+6 GroML     210   275   1131  957   1110  2683  1772  4840  1609  3367   17954
+7 Side      212   275   741   548   1174  2701  352   3170  1589  5490   16252
+8 Yellow    212   275   741   207   1174  2707  699   3109  1295  5514   15933
+
+Data from http://www-fp.cs.st-andrews.ac.uk/~icfppc/scores-lightning-r2.txt
+and http://www-fp.cs.st-andrews.ac.uk/~icfppc/scoretable-lightning-final.txt
