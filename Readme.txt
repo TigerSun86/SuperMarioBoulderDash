@@ -1,3 +1,11 @@
+Super mario boulder dash game can be played by using arrow key in key board or auto played by artificial intelligence.
+
+The GUI is implemented by javax.swing.
+
+The AI using brute force to check all possible game states, give each state a utility value and choose the move leading to highest utility.
+
+The utility is estimated by the win lose abort state, the coin already got, the distance to the potentially available closest coin and whether rock is blocking the coin or exit.
+
 1. How to run:
 
 Double click SuperMarioBoulderDash.jar it will run contest10.map with AI.
