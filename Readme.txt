@@ -2,7 +2,7 @@ Super mario boulder dash game can be played by using arrow key in key board or a
 
 The GUI is implemented by javax.swing.
 
-The AI using brute force to check all possible game states, give each state a utility value and choose the move leading to highest utility.
+The AI using brute force to check all possible game states in 5 steps, give each state a utility value and choose the move leading to highest utility.
 
 The utility is estimated by the win lose abort state, the coin already got, the distance to the potentially available closest coin and whether rock is blocking the coin or exit.
 
