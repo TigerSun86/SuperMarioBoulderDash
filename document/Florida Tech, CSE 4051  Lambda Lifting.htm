@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0046)http://cs.fit.edu/~ryan/cse4051/projects/lift/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Florida Tech, CSE 4051:  Lambda Lifting</title>
+    
+  <style type="text/css"></style></head>
+
+<body>
+
+<h1>Lambda Lifting</h1>
+
+<h2>The Task</h2>
+
+<p>
+In this project you are asked to write a one person game using Java Swing along
+the lines of the game <a href="http://en.wikipedia.org/wiki/Boulder_Dash">Boulder Dash</a>.
+Specifically we use the rules taken from a recent
+<a href="http://www-fp.cs.st-andrews.ac.uk/~icfppc/task.pdf">ICFP contest</a>.
+
+</p><p>
+It is important that the game/simulation be run visually and manually,
+run visually and automatically, and automatically without visualization.
+
+</p><pre>java -Ddisplay=graphics Lift ./contest1.map               # manually
+java -Ddisplay=graphics Lift ./contest1.map &lt; input.txt   # predetermined moves
+java -Ddisplay=graphics Lift ./contest1.map RandomWalk    # play automatically
+java -Ddisplay=none     Lift ./contest1.map RandomWalk    # automatically, score only
+java -Ddisplay=text     Lift ./contest1.map RandomWalk    # automatically, text output
+</pre>
+
+<p>
+The first argument to Java is manditory and is the name of a file
+<font color="red">or a URL</font> containing a US-ASCII map of the mine.
+The second argument is optional and if present signals a Java program which
+will act as the agent to direct the miner in solving the map.
+Otherwise the moves come from the standard input stream.
+</p>
+
+<p>
+The default value for <tt>-Ddisplay</tt> is <tt>none</tt>.
+In all cases, the program should print the <font color="red">integer score</font> to the
+standard output stream.
+In the case of graphics and none, this is the only output
+on the standard output stream.
+In the case of text, board and the score is printed to the standard output with each
+move.
+
+</p><h2>Moves</h2>
+The moves are A (abort), U (up), D (down), L (left), R (right), and W (wait);
+illegal moves are equivalent to 'W'.
+
+<h2>Assumptions</h2>
+
+In order to run a "miner" -- a mine searching program -- the main program must make some
+assumptions about the miner.
+A mine searching program is required to have a static method called <tt>next</tt>.
+The method <tt>next</tt> returns a character representing the move of the miner,
+one of AUDLRW.
+The method takes three arguments:
+the row that the miner is currently in,
+the column that the miner is currently in,
+and the entire mine represented as a two dimensional character array.
+Use reflection to find and all the <tt>next</tt> method of the miner.
+<pre> String methodName = "next";
+ Class[] parameters = new Class[] {int.class, int.class, char[][].class};
+</pre>
+
+<p>
+Here is a java class for a miner that gets its direction by asking the user:
+<a href="http://cs.fit.edu/~ryan/cse4051/projects/lift/DefaultMiner-java.html"><tt>DeaultMiner.java</tt></a>.
+Note the main program must protect itself from possible abuse by
+a miner program by passing a copy of the map.
+
+
+</p><h2>Icons</h2>
+
+Put the images in <tt>ImageIcon</tt>,
+then in <tt>JLabel</tt> (why?),
+and finally in a <tt>JPanel</tt> using <tt>GridLayout</tt>.
+
+<p>
+
+</p><center>
+<table>
+<tbody><tr>
+  <td><tt>R</tt></td><td><img width="72" src="./Florida Tech, CSE 4051  Lambda Lifting_files/miner.png" <="" img=""></td>
+  <td><tt>#</tt></td><td><img width="72" src="./Florida Tech, CSE 4051  Lambda Lifting_files/wall.png" <="" img=""></td>
+  <td><tt>*</tt></td><td><img width="72" src="./Florida Tech, CSE 4051  Lambda Lifting_files/rock.png" <="" img=""></td>
+  <td><tt>\</tt></td><td><img width="72" src="./Florida Tech, CSE 4051  Lambda Lifting_files/gold.png" <="" img=""></td>
+</tr>
+<tr>
+  <td><tt>L</tt></td><td><img width="72" src="./Florida Tech, CSE 4051  Lambda Lifting_files/lift.png" <="" img=""></td>
+  <td><tt>O</tt></td><td><img width="72" src="./Florida Tech, CSE 4051  Lambda Lifting_files/open.png" <="" img=""></td>
+  <td><tt>.</tt></td><td><img width="72" src="./Florida Tech, CSE 4051  Lambda Lifting_files/earth.png" <="" img=""></td>
+  <td>sp</td>        <td><img width="72" src="./Florida Tech, CSE 4051  Lambda Lifting_files/empty.png" <="" img=""></td>
+</tr>
+</tbody></table>
+</center>
+
+(Better icons of the same size (48px x 48px) are welcome!)
+
+<h2>Maps</h2>
+
+
+<ul>
+<li><a href="http://cs.fit.edu/~ryan/cse4051/projects/lift/contest1.map"><tt>contest1.map</tt></a>
+</li><li><a href="http://cs.fit.edu/~ryan/cse4051/projects/lift/contest2.map"><tt>contest2.map</tt></a>
+</li><li><a href="http://cs.fit.edu/~ryan/cse4051/projects/lift/contest3.map"><tt>contest3.map</tt></a>
+</li><li><a href="http://cs.fit.edu/~ryan/cse4051/projects/lift/contest4.map"><tt>contest4.map</tt></a>
+</li><li><a href="http://cs.fit.edu/~ryan/cse4051/projects/lift/contest5.map"><tt>contest5.map</tt></a>
+</li><li><a href="http://cs.fit.edu/~ryan/cse4051/projects/lift/contest6.map"><tt>contest6.map</tt></a>
+</li><li><a href="http://cs.fit.edu/~ryan/cse4051/projects/lift/contest7.map"><tt>contest7.map</tt></a>
+</li><li><a href="http://cs.fit.edu/~ryan/cse4051/projects/lift/contest8.map"><tt>contest8.map</tt></a>
+</li></ul>
+
+<h2>Turning it in</h2>
+
+<p>
+Turn in the Java source code for the program using the <a href="http://cs.fit.edu/~ryan/submit.html">submission server</a>.
+The main file name should be <tt>Lift.java</tt> and the project is <tt>proj08</tt>.
+Be sure your name is in comments at the beginning of your program
+as required in the standard header for this class.
+You may contribute contest maps and Java programs to play
+the game if you wish.
+
+</p><p>
+<script type="text/javascript" src="./Florida Tech, CSE 4051  Lambda Lifting_files/template.js"></script>
+<table border="1" cellpadding="3" cellspacing="3">
+    <tbody>
+        <tr>
+            <td align="center" valign="middle">
+                <img alt="sadistics check" src="./Florida Tech, CSE 4051  Lambda Lifting_files/200px-Green_check.svg.png" border="0px" width="80px">
+            </td>
+            <td>
+                <form id="checkForm" style="margin-bottom:0;" method="post" action="http://cs.fit.edu/~ryan/php/fileinfo.php" enctype="multipart/form-data">
+                <table align="center" border="0" cellpadding="3" cellspacing="0">
+                    <tbody><tr>
+                        <td align="right" valign="middle">Java file</td>
+                        <td align="left" valign="middle"><input name="fileToUpload" size="55" type="file"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            Analyze the file (this may take a while):
+                            <input style="background-color: #6C6;" name="submit" value="Analyze" type="submit">
+                            <input style="background-color: #FC6;" name="reset" value="Reset!" type="reset">
+                        </td>
+                    </tr>
+                </tbody></table>
+                </form>
+            </td>
+            <td border="80px" align="center" valign="middle">
+                <img alt="java logo" src="./Florida Tech, CSE 4051  Lambda Lifting_files/javalogo.gif" height="80px">
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="middle">
+                <a href="https://cs.fit.edu/Portal/modules/submitServer/">
+                <img alt="submit server" src="./Florida Tech, CSE 4051  Lambda Lifting_files/submit_server.png" width="100px">
+                </a>
+            </td>
+            <td valign="middle">
+                <form id="multipleSubmit" style="margin-bottom:0;" class="submitServer" method="post" action="https://cs.fit.edu/Portal/modules/submitServer/?action=submit" enctype="multipart/form-data">
+                    <input id="courseField" name="class" value="cse4051" type="hidden">
+                    <input id="projectField" name="assignment" value="proj08" type="hidden">
+                    <table id="attach" align="center" border="0" cellpadding="3" cellspacing="0">
+                            <tbody><tr>
+                                <td align="right" valign="middle">File 1</td>
+                                <td align="left" valign="middle"><input name="files[]" size="55" type="file"></td>
+                            </tr>
+                        <tr>
+                            <td></td>
+                            <td><input value="Add another file" onclick="addRowToTable(&#39;attach&#39;);" type="button">
+                            <input value="Remove last file" onclick="removeRowFromTable(&#39;attach&#39;);" type="button"></td>
+                        </tr>
+                        <tr>
+                            <td>Control code:</td>
+                            <td>
+                                <input name="controlCode" type="password">
+                                <input style="background-color: #6CF;" name="submit" value="Submit" type="submit">
+                                <input style="background-color: #FC6;" name="reset" value="Reset!" type="reset">
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </form>
+            </td>
+            <td align="center" valign="middle">
+                file 1=<tt>Lift.java</tt><br>
+                <a href="https://cs.fit.edu/Projects/submit/submissions/current/cse4051/"><b>Course=cse4051</b></a><br>
+                <a href="https://cs.fit.edu/Projects/submit/submissions/current/cse4051/proj08.html"><b>Project=proj08</b></a><br>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+</p><iframe frameborder="0" scrolling="no" style="background-color: transparent; border: 0px; display: none;"></iframe><div id="GOOGLE_INPUT_CHEXT_FLAG" input="null" input_stat="{&quot;tlang&quot;:null,&quot;tsbc&quot;:null,&quot;pun&quot;:null,&quot;mk&quot;:false,&quot;ss&quot;:true}" style="display: none;"></div></body></html>
